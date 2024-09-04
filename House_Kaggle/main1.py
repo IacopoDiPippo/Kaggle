@@ -2,6 +2,9 @@ import numpy as np
 import pandas as pd
 import os
 import tensorflow_decision_forests as tfdf
+import tensorflow as tf
+import seaborn as sns
+import matplotlib.pyplot as plt
 
 
 print(os.getcwd())
@@ -34,14 +37,17 @@ datatest = datatest.fillna(0)
 
 model=tfdf.keras.RandomForestModel(task = tfdf.keras.Task.REGRESSION)
 
+print("TensorFlow v" + tf.__version__)
+print("TensorFlow Decision Forests v" + tfdf.__version__)
+
+
+print(dataset.info())
+
+
+
+
+
+
+
 print(dataset,label)
 
-model.fit(dataset, label)
-
-print('Model_score:', model.score(dataset,label))
-
-predictions=model.predict(datatest)
-
-output=pd.DataFrame({'Id':Id_test, 'SalePrice': predictions})
-
-output.to_csv('submission.csv', index=False)
